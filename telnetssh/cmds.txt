@@ -1,0 +1,21 @@
+#telnet 
+
+sudo yum install telnet-server
+sudo systemctl enable  telnet.socket
+sudo systemctl start telnet.socket
+sudo firewall-cmd --permanent --add-port=23/tcp
+
+on client side
+telnet localhost 23
+
+
+#ssh
+
+sudo yum install openssh-server
+sudo systemctl enable sshd
+sudo systemctl start sshd
+
+on client side
+ssh username@localhost 
+
+

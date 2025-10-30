@@ -1,0 +1,36 @@
+sudo useradd tribit
+sudo passwd tribit
+
+sudo useradd blud
+sudo passwd blud
+
+#listing all users
+cat /etc/passwd
+
+sudo groupadd networker
+
+#add users
+sudo usermod -aG groupname username
+
+#get information about group
+getent group networker
+
+
+sudo chown :networker ./shared.sh
+
+#checking if this belongs to group or not
+find ./shared.sh -group networker
+
+#permission
+sudo chmod 770 ./shared.sh .....read write execute to all
+sudo chmod 660 ....no exe
+sudo chmod 640 ..only read
+
+
+#specfic
+sudo setfacl -m u:tribit:rw ./shared.sh
+ 
+
+#to check which user have which permission
+getfacl ./shared.sh
+
