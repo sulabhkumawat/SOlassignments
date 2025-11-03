@@ -1,0 +1,37 @@
+install apache tomcat  
+created one folder name firstapp  
+accessible from localhost and remote machine 
+permissions, user/group ownership  
+ 
+#first thing first ..install jdk 
+sudo yum install java-21-openjdk-devel -y 
+(if the above command aint work try--> replace yum with dnf) 
+ 
+ 
+ 
+#installed using wget ..direct link 
+cmd: 
+wget https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.111/bin/apache-tomcat-9.0.111.tar.gz 
+ 
+ 
+installed .tar.gz file which later extracted  
+extract cmd: 
+tar -xzvf apache-tomcat-9.0.111.tar.gz 
+ 
+ 
+and mv to ./opt dir (opt stands for optional software) 
+cmd: 
+sudo mv apache-tomcat-10.1.48 /opt/tomcat 
+/opt/tomcat --> simply renamed this apache-tomcat-10.1.48 into tomcat 
+  
+ 
+#understanding users and groups 
+create a tomcat user 
+cmd: 
+sudo useradd -r -m -U -d /opt/tomcat -s /bin/false tomcat 
+-r --> system user 
+-m --> create home dir 
+-U --> create a group with the same name 
+-d /opt/tomcat --> home directory for tomcat 
+-s /bin/false ---> no login shell 
+-- VISUAL --                                                                                                                     89        1,1           Top
