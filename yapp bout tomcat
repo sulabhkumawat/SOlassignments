@@ -17,8 +17,6 @@ wget https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.111/bin/apache-tomcat-9.0.111
 installed .tar.gz file which later extracted  
 extract cmd: 
 tar -xzvf apache-tomcat-9.0.111.tar.gz 
- 
- 
 and mv to ./opt dir (opt stands for optional software) 
 cmd: 
 sudo mv apache-tomcat-10.1.48 /opt/tomcat 
@@ -34,4 +32,66 @@ sudo useradd -r -m -U -d /opt/tomcat -s /bin/false tomcat
 -U --> create a group with the same name 
 -d /opt/tomcat --> home directory for tomcat 
 -s /bin/false ---> no login shell 
--- VISUAL --                                                                                                                     89        1,1           Top
+why do this? like creating user? 
+
+running  tomcat as a non-root user is safer 
+if tomcat is hacked, the attacker wont get root access 
+ 
+#set ownership of tomcat folder 
+sudo chown -R tomcat:tomcat /opt/tomcat 
+ 
+tomcat:tomcat -->user tomcat, group tomcat 
+-R--> recursively changes ownership of all files/folders 
+
+#set execute permission on scripts
+sudo chmod -R u+x /opt/tomcat/bin
+
+u+x --> "give execute permission to the user (owner)
+
+u+x --> "give execute permission to the user (owner) 
+ 
+#starting tomcat 
+cd /opt/tomcat/bin 
+sudo ./startup.sh 
+ 
+access in browser: http//localhost:8080 -->tomcat welcome page 
+ 
+ 
+#deploying a web application 
+sudo mkdir /opt/tomcat/webapps/ 
+sudo mkdir firstapp 
+cd firstapp 
+sudo vim index.html 
+ 
+#url :localhost:8080/firstapp 
+
+content of index.html 
+<!DOCTYPE html> 
+<html> 
+<head> 
+  <title> My first tomcat app </title> 
+</head> 
+<body> 
+   <h1> hello from apache tomcat! </h1> 
+</body> 
+</html> 
+ 
+#restart tomcat 
+sudo ./shutdown.sh 
+sudo ./startup.sh 
+ 
+#access your app localhost 
+http://localhost:8080/firstapp 
+
+#access your app remote machine 
+http://<your ip>:8080/firstapp
+
+#if remote access fails,check firewall 
+sudo ufw allow 8080 
+sudo ufw reload 
+ 
+#summary 
+download tomcat .tar.gz-->extracted -->moved to /opt/tomcat 
+created tomcat user and group -->set ownership 
+made scripts executable -->started tomcat -->verified with localhost 
+created firstapp -->added index.html -->restarted tomcat -->accessed app 
