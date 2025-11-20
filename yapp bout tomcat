@@ -49,7 +49,11 @@ sudo chmod -R u+x /opt/tomcat/bin
 u+x --> "give execute permission to the user (owner)
 
 u+x --> "give execute permission to the user (owner) 
- 
+
+
+ps aux | grep tomcat
+sudo kill -9 <PID>
+
 #starting tomcat 
 cd /opt/tomcat/bin 
 sudo ./startup.sh 
