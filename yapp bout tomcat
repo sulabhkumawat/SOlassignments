@@ -99,3 +99,6 @@ download tomcat .tar.gz-->extracted -->moved to /opt/tomcat
 created tomcat user and group -->set ownership 
 made scripts executable -->started tomcat -->verified with localhost 
 created firstapp -->added index.html -->restarted tomcat -->accessed app 
+
+ps aux | grep tomcat
+sudo kill -9 <PID>
